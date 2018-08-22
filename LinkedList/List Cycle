@@ -1,0 +1,38 @@
+// Fast and slow Ptr approach 
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode a) {
+     if(head==null) return null;
+        
+        ListNode slow = head, fast = head;
+        
+        try {
+            do {
+                fast = fast.next;
+                fast = fast.next;
+                slow = slow.next;
+            } while(fast!=null && fast!=slow);
+            
+        } catch(Exception e){}
+        
+        if(slow==null || fast==null || slow!=fast)
+            return null;
+            
+        slow = head;
+        
+        while(slow!=fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow;
+
+    }
+}
