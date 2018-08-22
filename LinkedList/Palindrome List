@@ -1,0 +1,53 @@
+Given a singly linked list, determine if its a palindrome. Return 1 or 0 denoting if its a palindrome or not, respectively.
+
+Notes:
+
+Expected solution is linear in time and constant in space.
+For example,
+
+List 1-->2-->1 is a palindrome.
+List 1-->2-->3 is not a palindrome.
+
+
+public class Solution {
+    public int lPalin(ListNode A) {
+        ListNode middleElement = findMiddleElement(A);
+        ListNode reverseHead = middleElement.next;
+        ListNode reverseNode = reverse(middleElement.next);
+        middleElement.next = null;
+        while(A!=null && reverseHead!=null){
+            System.out.println(A.val + " , "+ reverseHead.val);
+            if(A.val != reverseHead.val)
+                return 0;
+            else {
+                A = A.next;
+                reverseHead = reverseHead.next;
+            }
+        }
+        return 1;
+    }
+    public ListNode reverse(ListNode A){
+        ListNode prev = null;
+        ListNode current = A;
+        ListNode nextNode;
+        while(current!=null){
+            nextNode = current.next;
+            current.next = prev;
+            prev=current;
+            current = nextNode;
+        }
+        return prev;
+    }
+    public ListNode findMiddleElement(ListNode A){
+        ListNode fastPtr = A;
+        ListNode slowPtr = A;
+        while(fastPtr!=null){
+            fastPtr = fastPtr.next;
+            if(fastPtr != null && fastPtr.next != null) { 
+                slowPtr = slowPtr.next; 
+                fastPtr = fastPtr.next; 
+            } 
+        }
+        return slowPtr;
+    }
+}
