@@ -1,0 +1,15 @@
+public class Solution {
+    public ListNode reverseList(ListNode A, int B) {
+        ListNode current = A;
+        ListNode prev = A;
+        int count = 0;
+        while(current!=null){
+            if(count == B){
+                
+            }
+            count++;
+            current = current.next;
+        }
+    }
+    
+}
