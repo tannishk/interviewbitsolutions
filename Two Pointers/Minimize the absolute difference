@@ -1,0 +1,25 @@
+public class Solution {
+    public int solve(ArrayList<Integer> A, ArrayList<Integer> B, ArrayList<Integer> C) {
+        int diff = Integer.MAX_VALUE;
+        int i=0;
+        int j=0;
+        int k=0;
+        while(i<A.size() && j < B.size() && k < C.size()){
+            int max = Math.max(Math.max(A.get(i),B.get(j)),C.get(k));
+            int min = Math.min(Math.min(A.get(i),B.get(j)),C.get(k));
+            if(diff > max - min )
+                diff = max - min;
+                
+             if (diff == 0) break;
+
+                
+            if(min == A.get(i)) 
+                    i++;
+            else if (min == B.get(j))
+                    j++;
+                    else 
+                    k++;
+        }
+        return diff;
+    }
+}
