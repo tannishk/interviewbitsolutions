@@ -1,0 +1,22 @@
+public class Solution {
+    public void sortColors(ArrayList<Integer> a) {
+        int count0 = 0;
+        int count1 = 0;
+        int count2 = 0;
+        for(int i=0;i<a.size();i++){
+            if(a.get(i).intValue() == 0)
+                count0++;
+            if(a.get(i).intValue() == 1)
+                count1++;
+            if(a.get(i).intValue() == 2)
+                count2++;
+        }
+        for(int i=0;i<a.size();i++){
+            int answer = (count0-- > 0) ? 0:
+            (count1-- > 0)? 1:
+            (count2-- > 0)? 2 :
+            3;
+            a.set(i,answer);
+        }
+    }
+}
