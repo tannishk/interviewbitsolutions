@@ -1,0 +1,20 @@
+public class Solution {
+    public int removeElement(ArrayList<Integer> a, int b) {
+        Queue<Integer> queue = new LinkedList<>();
+        int count = 0;
+        for(int i=0;i<a.size();i++){
+            if(a.get(i).intValue()==b){
+                // System.out.println(i);
+                queue.add(i);
+                count++;
+            } else {
+                if(queue.size()!=0){
+                    int index = queue.remove();
+                     a.set(index,a.get(i));
+                     queue.add(i);
+                }
+            }
+        }
+    return a.size()-count;
+    }
+}
