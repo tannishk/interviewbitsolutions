@@ -1,0 +1,19 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int minimize(final List<Integer> a, final List<Integer> b, final List<Integer> c) {
+        int i = 0,j=0,k=0;
+        int diff = Integer.MAX_VALUE;
+        while(i<a.size() && j<b.size() && k < c.size()){
+            int min = Math.min(a.get(i),Math.min(b.get(j),c.get(k)));
+            int max = Math.max(a.get(i),Math.max(b.get(j),c.get(k)));
+            int di = max - min;
+            diff = Math.min(diff,di);
+            if(diff == 0)
+                return diff;
+            if(min == a.get(i)) i++;
+            else if(min == b.get(j)) j++;
+            else k++;
+        }
+        return diff;
+    }
+}
