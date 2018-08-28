@@ -1,0 +1,19 @@
+public class Solution {
+    public int diffPossible(ArrayList<Integer> A, int B) {
+        if(A.size()==1 || A==null)
+            return 0;
+        int i = 0;
+        int j = 1;
+        while(i < A.size() && j < A.size()){
+            int diff = A.get(j)-A.get(i);
+            if(diff == B && i!=j)
+                return 1;
+            if(diff <= B){
+                j++;
+            } else {
+                i++;
+            }
+        }
+        return 0;
+    }
+}
