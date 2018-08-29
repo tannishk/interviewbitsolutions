@@ -1,0 +1,16 @@
+public class Solution {
+    public int maxArea(ArrayList<Integer> a) {
+        int left = 0;
+        int right = a.size()-1;
+        int area  = 0;
+        while(left <= right){
+            area = Math.max(area,(Math.min(a.get(left),a.get(right))*(right-left)));
+            if(a.get(left).intValue() < a.get(right).intValue()){
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return area;
+    }
+}
