@@ -1,0 +1,24 @@
+public class Solution {
+    public ArrayList<Integer> prevSmaller(ArrayList<Integer> A) {
+        ArrayList<Integer> solution = new ArrayList<Integer>();
+        solution.add(-1);
+        Stack<Integer> stack = new Stack<>();
+        stack.push(A.get(0));
+        for(int i=1;i<A.size();i++){
+           int top = stack.peek().intValue();
+           while(!stack.empty()){
+              top = stack.peek().intValue();
+             if(top<A.get(i)){
+               solution.add(top);
+               break;
+               }
+            stack.pop();
+           }
+           if(stack.empty()){
+               solution.add(-1);
+           }
+           stack.push(A.get(i));
+        }
+        return solution;
+    }
+}
