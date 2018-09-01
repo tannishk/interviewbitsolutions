@@ -1,0 +1,36 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+     public static ArrayList<Integer> slidingMaximum(final List<Integer> a, int b) {
+        Deque<Integer> deque = new ArrayDeque<Integer>();
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        if(a == null || a.size() == 0)
+            return result;
+        
+        int i =0;
+        while(i < b){
+            while(!deque.isEmpty() && a.get(deque.getLast()) <= a.get(i))
+                deque.removeLast();
+            deque.addLast(i++);
+        }
+        
+        int[] max = new int[a.size() - b +1];
+        max[i-b] = a.get(deque.getFirst());
+
+        while(i < a.size()){
+            while(!deque.isEmpty() && a.get(deque.getLast()) <= a.get(i))
+                deque.removeLast();
+            deque.addLast(i);
+            if(!deque.isEmpty() && i-b >= deque.getFirst())
+                deque.removeFirst();
+            
+            ++i;
+            max[i-b] = a.get(deque.getFirst());
+        }
+        
+        for(int j =0; j < max.length; j++)
+            result.add(max[j]);
+
+
+        return result;
+    }
+}
