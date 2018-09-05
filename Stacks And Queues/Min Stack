@@ -1,0 +1,29 @@
+class Solution {
+    Stack<Integer> stack = new Stack<>();
+    Stack<Integer> stackMin = new Stack<>();
+    public void push(int x) {
+        stack.push(x);
+        if(stackMin.empty()){
+            stackMin.push(x);
+        } else if(stackMin.peek()<x){
+             stackMin.push(stackMin.peek());
+        } else {
+              stackMin.push(x);
+        }
+    }
+
+    public void pop() {
+        if(stack.empty())
+            return;
+        stack.pop();
+        stackMin.pop();
+    }
+
+    public int top() {
+        return stack.empty()?-1:stack.peek();
+    }
+
+    public int getMin() {
+        return stackMin.empty()?-1:stackMin.peek();
+    }
+}
